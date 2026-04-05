@@ -62,9 +62,11 @@ namespace Banyar.Player {
 
             if (stateInfo.IsTag("Combat"))
             {
-                if (stateInfo.shortNameHash == Animator.StringToHash("Attack3"))
+                if (stateInfo.shortNameHash == Animator.StringToHash("Attack1") ||
+                    stateInfo.shortNameHash == Animator.StringToHash("Attack2") ||
+                    stateInfo.shortNameHash == Animator.StringToHash("Attack3"))
                 {
-                    return stateInfo.normalizedTime >= 0.5f;
+                    return stateInfo.normalizedTime >= 0.6f;
                 }
                 return false;
             } else {
