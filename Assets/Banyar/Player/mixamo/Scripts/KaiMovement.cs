@@ -19,6 +19,8 @@ namespace Banyar.Player {
         private InputAction sprintAction;
         private InputAction attackAction;
 
+        [SerializeField] private Collider weaponCollider;
+
         // [Header("Player State")]
         // [SerializeField] private bool inCombat;
 
@@ -32,6 +34,16 @@ namespace Banyar.Player {
             moveAction = playerControls.Player.Move;
             sprintAction = playerControls.Player.Sprint;
             attackAction = playerControls.Player.Attack;
+        }
+
+        public void enableWeaponCollider() 
+        {
+            weaponCollider.enabled = true;
+        }
+
+        public void disableWeaponCollider() 
+        {
+            weaponCollider.enabled = false;
         }
 
         void OnEnable() 
