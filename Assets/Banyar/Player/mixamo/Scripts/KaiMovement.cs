@@ -21,6 +21,11 @@ namespace Banyar.Player {
 
         [SerializeField] private Collider weaponCollider;
 
+        [Header("Gravity")]
+        public float gravity = -9.81f;
+        public float groundCheckDistance = 0.2f;
+        private float verticalVelocity;
+
         // [Header("Player State")]
         // [SerializeField] private bool inCombat;
 
@@ -64,8 +69,22 @@ namespace Banyar.Player {
 
         void Update()
         {
+            applyGravity();
             movePlayer();
             attackPlayer();
+        }
+
+        void applyGravity()
+        {
+            if (characterController.isGrounded && verticalVelocity < 0)
+            {
+                verticalVelocity = -2f;
+            }
+
+            verticalVelocity += gravity * Time.deltaTime;
+
+            Vector3 gravityMove = new Vector3(0, verticalVelocity, 0);
+            characterController.Move(gravityMove * Time.deltaTime);
         }
 
         bool canMove()
